@@ -15,7 +15,7 @@
     <select class="form-select mb-3" aria-label="Nome Teste" id="nome_teste" name="nome_teste">
         <option selected disabled>Nome Teste</option>
         {% for chave, teste in lista_testes.items() %}
-        <option value="{{teste.nome}}">{{teste.nome}}</option>
+        <option value="{{chave}}">{{teste.nome}}</option>
         {% endfor%}
     </select>
     <div class="form-floating mb-3">
@@ -25,8 +25,8 @@
     <select class="form-select mb-3" aria-label="Resultado" id="resultado"
         name="resultado">
         <option selected disabled>Resultado</option>
-        <option value="1">SUCESSO</option>
-        <option value="2">FALHA</option>
+        <option value="SUCESSO">SUCESSO</option>
+        <option value="FALHA">FALHA</option>
     </select>
     <div class="form-floating mb-3">
         <textarea class="form-control" placeholder="obs_falha" id="obs_falha" name="obs_falha" style="height: 100px"></textarea>

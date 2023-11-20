@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
+import cx_Oracle
 from datetime import datetime
 
 class Teste:
@@ -11,13 +12,6 @@ class Teste:
         self.dados_output = dados_output
         self.desc_procedimento = desc_procedimento
 
-teste1 = Teste('exemplo de nome 1', 'testar o exemplo 1', 'NF', 'Acessar o site', 'dado de input', 'dados de output', 'desc procediemento')
-teste2 = Teste('exemplo de nome 2', 'testar o exemplo 2', 'NF', 'Acessar o site', 'dado de input', 'dados de output', 'desc procediemento')
-
-lista_testes = {
-    teste1.nome : teste1,
-    teste2.nome : teste2
-}
 class LogTeste:
     def __init__(self, nome_teste, responsavel, dt_hora_exec, resultado, obs_falha, acao_realizada):
         self.nome_teste = nome_teste
@@ -27,16 +21,18 @@ class LogTeste:
         self.obs_falha = obs_falha
         self.acao_realizada = acao_realizada
 
-log_teste1 = LogTeste('Nome do teste 1', 'Vinicius', '18/11/2023 14:26:02', 'SUCESSO', '', 'desc procediemento')
-log_teste2 = LogTeste('Nome do teste 2', 'Vinicius', '18/11/2023 14:26:02', 'FALHA', 'falhou ao tentar acessar a pasta', 'desc procediemento')
-
-lista_log = {
-    log_teste1.nome_teste:log_teste1,
-    log_teste2.nome_teste:log_teste2
-}
-
 app = Flask(__name__)
 app.secret_key = 'iris_care'
+
+# Substitua os valores entre aspas com suas próprias informações de conexão
+username = "rm93613"
+password = "150503"
+host = "oracle.fiap.com.br"
+port = "1521"
+service_name = "ORCL"
+
+# Construa a string de conexão
+dsn = cx_Oracle.makedsn(host, port, service_name=service_name)
 
 
 @app.route("/", methods=['GET'])
@@ -56,6 +52,41 @@ def integrantes():
 
 @app.route("/quality", methods=['GET'])
 def quality_home():
+
+    connection = cx_Oracle.connect(username, password, dsn)
+
+    cursor = connection.cursor()
+
+    sql = "SELECT id_teste, nome, objetivo, ind_funcional, preparacao, dados_input, dados_output, desc_procedimento "
+    sql += 'FROM TB_IC_TESTE'
+
+    cursor.execute(sql)
+
+    result = cursor.fetchall()
+
+    lista_testes = {}
+
+    for row in result:
+        teste = Teste(row[1], row[2], row[3], row[4], row[5], row[6], row[7])
+        lista_testes[row[0]] = teste
+
+
+    sql = "SELECT l.id_log, l.id_teste, l.responsavel, l.dt_hora_exec, l.resultado, l.obs_falha, t.nome, t.desc_procedimento "
+    sql += 'FROM TB_IC_TESTE_LOG l INNER JOIN TB_IC_TESTE t ON(l.ID_TESTE = t.ID_TESTE)'
+
+    cursor.execute(sql)
+
+    result = cursor.fetchall()
+
+    lista_log = {}
+
+    for row in result:
+        log = LogTeste(row[6], row[2], row[3], row[4], row[5], row[7])
+        lista_log[row[0]] = log
+
+
+    cursor.close()
+    connection.close()
 
     return render_template("quality_home.html", lista_testes=lista_testes, lista_log=lista_log)
 
@@ -77,14 +108,19 @@ def quality_cadastrarTeste():
     dados_output = data['dados_output']
     desc_procedimento = data['desc_procedimento']
 
-    if ind_funcional == '1':
-        ind_funcional = 'F'
-    elif ind_funcional == '2':
-        ind_funcional = 'NF'
+    connection = cx_Oracle.connect(username, password, dsn)
 
-    teste = Teste(nome, objetivo, ind_funcional, preparacao, dados_input, dados_output, desc_procedimento)
+    cursor = connection.cursor()
 
-    lista_testes[teste.nome] = teste
+    sql = 'INSERT INTO TB_IC_TESTE (id_teste, nome, objetivo, ind_funcional, preparacao, dados_input, dados_output, desc_procedimento)'
+    sql += "VALUES(SEQ_TB_IC_TESTE.NEXTVAL, :1, :2, :3, :4, :5, :6, :7)"
+
+    cursor.execute(sql, (nome, objetivo, ind_funcional, preparacao, dados_input, dados_output, desc_procedimento))
+
+    connection.commit()
+
+    cursor.close()
+    connection.close()    
 
     flash("Ação efetuada com sucesso")
 
@@ -92,6 +128,26 @@ def quality_cadastrarTeste():
 
 @app.route("/quality/listar-testes", methods=['GET'])
 def quality_listarTestes():
+    
+    connection = cx_Oracle.connect(username, password, dsn)
+
+    cursor = connection.cursor()
+
+    sql = "SELECT id_teste, nome, objetivo, ind_funcional, preparacao, dados_input, dados_output, desc_procedimento "
+    sql += 'FROM TB_IC_TESTE'
+
+    cursor.execute(sql)
+
+    result = cursor.fetchall()
+
+    cursor.close()
+    connection.close()
+
+    lista_testes = {}
+
+    for row in result:
+        teste = Teste(row[1], row[2], row[3], row[4], row[5], row[6], row[7])
+        lista_testes[row[0]] = teste
 
     return render_template("quality_listarTestes.html", lista_testes=lista_testes)
 
@@ -99,10 +155,51 @@ def quality_listarTestes():
 @app.route("/quality/log-testes", methods=['GET'])
 def quality_logTestes():
 
+    connection = cx_Oracle.connect(username, password, dsn)
+
+    cursor = connection.cursor()
+
+    sql = "SELECT l.id_log, l.id_teste, l.responsavel, l.dt_hora_exec, l.resultado, l.obs_falha, t.nome, t.desc_procedimento "
+    sql += 'FROM TB_IC_TESTE_LOG l INNER JOIN TB_IC_TESTE t ON(l.ID_TESTE = t.ID_TESTE)'
+
+    cursor.execute(sql)
+
+    result = cursor.fetchall()
+
+    lista_log = {}
+
+    for row in result:
+        log = LogTeste(row[6], row[2], row[3], row[4], row[5], row[7])
+        lista_log[row[0]] = log
+
+
+    cursor.close()
+    connection.close()
+
     return render_template("quality_logTestes.html", lista_log=lista_log)
 
 @app.route("/quality/cadastro-log-testes", methods=['GET'])
 def quality_cadastroLogTestes():
+
+    connection = cx_Oracle.connect(username, password, dsn)
+
+    cursor = connection.cursor()
+
+    sql = "SELECT id_teste, nome, objetivo, ind_funcional, preparacao, dados_input, dados_output, desc_procedimento "
+    sql += 'FROM TB_IC_TESTE'
+
+    cursor.execute(sql)
+
+    result = cursor.fetchall()
+
+    cursor.close()
+    connection.close()
+
+    lista_testes = {}
+
+    for row in result:
+        teste = Teste(row[1], row[2], row[3], row[4], row[5], row[6], row[7])
+        lista_testes[row[0]] = teste
 
     return render_template("quality_cadastroLogTestes.html", lista_testes=lista_testes)
 
@@ -110,15 +207,10 @@ def quality_cadastroLogTestes():
 def quality_cadastrarLogTeste():
     data = request.form
 
-    nome_teste = data['nome_teste']
     responsavel = data['responsavel']
     resultado = data['resultado']
     obs_falha = data['obs_falha']
-
-    if resultado == '1':
-        resultado = 'SUCESSO'
-    elif resultado == '2':
-        resultado = 'FALHA'
+    id_teste = data['nome_teste']
 
     data_hora_atual = datetime.now()
 
@@ -126,11 +218,19 @@ def quality_cadastrarLogTeste():
     formato_desejado = "%d/%m/%Y %H:%M:%S"
     dt_hora_exec = data_hora_atual.strftime(formato_desejado)
 
-    acao_realizada = lista_testes.get(nome_teste).desc_procedimento
+    connection = cx_Oracle.connect(username, password, dsn)
 
-    log_teste = LogTeste(nome_teste, responsavel, dt_hora_exec, resultado, obs_falha, acao_realizada)
+    cursor = connection.cursor()
 
-    lista_log[log_teste.nome_teste] = log_teste
+    sql = 'INSERT INTO TB_IC_TESTE_LOG (id_log, id_teste, responsavel, dt_hora_exec, resultado, obs_falha) '
+    sql += "VALUES(SEQTB_IC_TESTE_LOG.NEXTVAL, :1, :2, TO_DATE(:3, 'DD/MM/YYYY HH24:MI:SS'), :4, :5)"
+
+    cursor.execute(sql, (id_teste, responsavel, dt_hora_exec, resultado, obs_falha))
+
+    connection.commit()
+
+    cursor.close()
+    connection.close()    
 
     flash("Ação efetuada com sucesso")
 
