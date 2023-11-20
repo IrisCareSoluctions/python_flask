@@ -1,0 +1,156 @@
+{% extends "template.html" %}
+{% block conteudo %}
+
+<nav aria-label="breadcrumb" >
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a class="fw-bold" href="{{ url_for('index') }}">Página Inicial</a></li>
+        <li class="breadcrumb-item active fw-bold" aria-current="page">Compliance & Quality Assurance</li>
+    </ol>
+</nav>
+
+<section id="azure" class="mb-5">
+
+    <h3>Azure Devops - Azure Boards</h3>
+    
+    <p>Com base em nosso projeto, apresentado na página <a href="{{ url_for('sobre') }}" class="" aria-current="page">Sobre</a> desta aplicação desenvolvemos no um plano de BackLog do nosso produto, incluindo <b>Épicos</b>, <b>Features</b> e <b>Product backlog itens</b>. Todos com a <b>descrição</b> e <b>critérios de aceite</b>.</p>
+    <p>Liberamos o acesso para o professor Renato Jardim Parducci (profrenato.parducci@fiap.com.br).</p>
+    <p>Link:  <a href="https://dev.azure.com/IrisCareSoluctions">Clique aqui</a></p>
+    <p>A seguir alguns prints do nosso backlog atendendo ao requisitos solicitados.</p>
+
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Épicos</h5>
+        </div>
+        <img src="{{url_for('static', filename=('epicos.png'))}}" class="card-img-top" alt="epicos">
+    </div>
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Exemplo de Features de um Épico</h5>
+        </div>
+        <img src="{{url_for('static', filename=('features.png'))}}" class="card-img-top" alt="epicos">
+    </div>
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Exemplo de Product backlog itens de uma Feature</h5>
+        </div>
+        <img src="{{url_for('static', filename=('itens.png'))}}" class="card-img-top" alt="epicos">
+    </div>
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Exemplo de Descrição e critérios de aceite de um Product backlog item</h5>
+        </div>
+        <img src="{{url_for('static', filename=('desc_item.png'))}}" class="card-img-top" alt="epicos">
+    </div>
+
+</section>
+
+<section id="testes" class="mb-5">
+
+    <h3>Testes</h3>
+
+    <p>Em vez de utilizar a ferramenta Excel para manualmente registrar informações de teste, optamos por desenvolver uma aplicação dedicada. Essa abordagem oferece maior dinamicidade, permitindo o cadastro, listagem e edição eficientes dos testes do sistema. Essa solução proporciona uma experiência mais ágil e organizada, facilitando a gestão e análise dos testes realizados.</p>
+
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Código</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Objetivo</th>
+                <th scope="col">Ind. Funcional</th>
+                <th scope="col">Preparação</th>
+                <th scope="col">Dados Input</th>
+                <th scope="col">Dados Output</th>
+                <th scope="col">Desc. Procedimento</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for chave, teste in lista_testes.items() %}
+            <tr>
+                <td>IC-MT{{loop.index}}</td>
+                <td>{{teste.nome}}</td>
+                <td>{{teste.objetivo}}</td>
+                <td>{{teste.ind_funcional}}</td>
+                <td>{{teste.preparacao}}</td>
+                <td>{{teste.dados_input}}</td>
+                <td>{{teste.dados_output}}</td>
+                <td>{{teste.desc_procedimento}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="text-center">
+        <span><i>Está sendo exibido apenas os 4 primeiros, acessar a página de <a href="{{url_for('quality_cadastrarTeste')}}">Testes</a> para visualiar todos.</i></span>
+    </div>
+
+</section>
+
+<section id="log" class="mb-5">
+
+    <h3>Log de Testes</h3>
+
+    <p>A nossa log de testes é uma ferramenta versátil que pode ser alimentada tanto por inserção manual quanto por meio dos nossos robôs (RPA), os quais são dedicados à automação dos testes em nosso sistema. Essa abordagem híbrida permite uma cobertura ampla e eficiente, garantindo que a qualidade do sistema seja rigorosamente avaliada. O próximo item desta página detalhará especificamente o papel essencial desempenhado pelas nossas RPAs nesse processo de automação de testes.</p>
+
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome Teste</th>
+                <th scope="col">Responsável</th>
+                <th scope="col">Data Hora da Execução</th>
+                <th scope="col">Resultado</th>
+                <th scope="col">Obs. Falha</th>
+                <th scope="col">Ação Realizada</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for chave, log in lista_log.items() %}
+            <tr>
+                <th scope="row">{{loop.index}}</th>
+                <td>{{log.nome_teste}}</td>
+                <td>{{log.responsavel}}</td>
+                <td>{{log.dt_hora_exec}}</td>
+                <td>{{log.resultado}}</td>
+                <td>{{log.obs_falha}}</td>
+                <td>{{log.acao_realizada}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="text-center">
+        <span><i>Está sendo exibido apenas os 4 primeiros, acessar a página de <a href="{{url_for('quality_logTestes')}}">Log de Testes</a> para visualiar todos.</i></span>
+    </div>
+
+</section>
+
+<section id="robos" class="mb-5">
+
+    <h3>Robôs</h3>
+
+</section>
+
+<section id="perguntas" class="mb-5">
+
+    <h3>Perguntas</h3>
+
+    <h5 class="my-4">Em quais dessas situações você usaria Robô ou Teste manual, justificando o motivo:</h5 class="my-4">
+
+    <div class="ps-5">
+        <div class="my-2">
+            <h5>Teste de uma aplicação nova, que acabou de ser codificada.</h5>
+            <p><b>Resposta: </b></p>
+        </div>
+        <div class="my-2">
+            <h5>Teste de uma aplicação que já funcionava, cujo testes já tinham sido aplicados e que precisa ser testada novamente.</h5>
+            <p><b>Resposta: </b></p>
+        </div>
+        <div class="my-2">
+            <h5>Teste de uma aplicação que já funcionava, que não foi alterada mas, chama/consome serviço de uma outra aplicação que foi modificada, exigindo que seja feito um teste de regressão.</h5>
+            <p><b>Resposta: </b></p>
+        </div>
+    </div>
+
+
+</section>
+
+
+{% endblock %}

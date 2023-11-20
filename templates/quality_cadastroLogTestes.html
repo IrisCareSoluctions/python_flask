@@ -1,0 +1,44 @@
+{% extends "template.html" %}
+{% block conteudo %}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a class="fw-bold" href="{{ url_for('index') }}">Página Inicial</a></li>
+        <li class="breadcrumb-item"><a class="fw-bold" href="{{ url_for('quality_home') }}">Compliance & Quality Assurance</a></li>
+        <li class="breadcrumb-item"><a class="fw-bold" href="{{ url_for('quality_logTestes') }}">Log de Testes</a></li>
+        <li class="breadcrumb-item active fw-bold" aria-current="page">Cadastrar Novo Log de Teste</li>
+    </ol>
+</nav>
+
+<form class="cadastro-teste" id="cadastro-teste" method="post" action="{{ url_for('quality_cadastrarLogTeste') }}">
+    <h2 class="text-center mb-5">Cadastrar Novo Log de Teste</h2>
+    <select class="form-select mb-3" aria-label="Nome Teste" id="nome_teste" name="nome_teste">
+        <option selected disabled>Nome Teste</option>
+        {% for chave, teste in lista_testes.items() %}
+        <option value="{{teste.nome}}">{{teste.nome}}</option>
+        {% endfor%}
+    </select>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="responsavel" name="responsavel" placeholder="Responsavel">
+        <label for="responsavel">Responsavel</label>
+    </div>
+    <select class="form-select mb-3" aria-label="Resultado" id="resultado"
+        name="resultado">
+        <option selected disabled>Resultado</option>
+        <option value="1">SUCESSO</option>
+        <option value="2">FALHA</option>
+    </select>
+    <div class="form-floating mb-3">
+        <textarea class="form-control" placeholder="obs_falha" id="obs_falha" name="obs_falha" style="height: 100px"></textarea>
+        <label for="floatingTextarea">Obs Falha</label>
+    </div>
+
+    <div class="d-flex justify-content-around mt-5">
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <button type="button" class="btn btn-danger">Cancelar</button>
+        <button type="button" class="btn btn-secondary" onclick="limparFormulario()">Limpar Dados</button>
+    </div>
+</form>
+
+
+{% endblock %}

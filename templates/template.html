@@ -6,22 +6,49 @@
     <title>Iris Care</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <link rel="stylesheet" href="../static/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Playfair+Display&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header class="d-flex justify-content-center py-3">
+    <header class="d-flex justify-content-center py-3 text-bg-dark">
         <ul class="nav nav-pills">
-            <li class="nav-item "><a href="{{ url_for('index') }}" class="nav-link {% if request.path == url_for('index') %}active{% endif %}" aria-current="page">Home</a></li>
+        {% if request.path in [url_for('index'),  url_for('sobre'),  url_for('integrantes')] %}
+            <li class="nav-item "><a href="{{ url_for('index') }}" class="nav-link {% if request.path == url_for('index') %}active{% endif %}" aria-current="page">Página Inicial</a></li>
             <li class="nav-item "><a href="{{ url_for('sobre') }}" class="nav-link {% if request.path == url_for('sobre') %}active{% endif %}" aria-current="page">Sobre</a></li>
+            <li class="nav-item "><a href="{{ url_for('integrantes') }}" class="nav-link {% if request.path == url_for('integrantes') %}active{% endif %}" aria-current="page">Integrantes</a></li>
+        {% elif request.path in [url_for('quality_home'), url_for('quality_cadastoTeste'), url_for('quality_listarTestes'), url_for('quality_logTestes'), url_for('quality_cadastroLogTestes')] %}
+            <li class="nav-item "><a href="{{ url_for('quality_home') }}" class="nav-link {% if request.path == url_for('quality_home') %}active{% endif %}" aria-current="page">Home</a></li>
+            <li class="nav-item "><a href="{{ url_for('quality_listarTestes') }}" class="nav-link {% if request.path in [url_for('quality_listarTestes'), url_for('quality_cadastoTeste')] %}active{% endif %}" aria-current="page">Testes</a></li>
+            <li class="nav-item "><a href="{{ url_for('quality_logTestes') }}" class="nav-link {% if request.path in [url_for('quality_logTestes'), url_for('quality_cadastroLogTestes')] %}active{% endif %}" aria-current="page">Log dos Testes</a></li>
+        {% endif %}
         </ul>
     </header>
 
-    {% block conteudo %} {% endblock %}
+    <main class="container">
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul id="messages" class="list-unstyled">
+            {% for message in messages %}
+            <li class="alert alert-success">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
+        {% block conteudo %} {% endblock %}
+
+    </main>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='index.js')}}"></script>
     
 </body>
 </html>

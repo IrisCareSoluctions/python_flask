@@ -1,0 +1,56 @@
+{% extends "template.html" %}
+{% block conteudo %}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a class="fw-bold" href="{{ url_for('index') }}">Página Inicial</a></li>
+        <li class="breadcrumb-item"><a class="fw-bold" href="{{ url_for('quality_home') }}">Compliance & Quality Assurance</a></li>
+        <li class="breadcrumb-item active fw-bold" aria-current="page">Testes</li>
+    </ol>
+</nav>
+
+<button type="button" class="btn btn-primary btn-novo-teste">
+    <a href="{{ url_for('quality_cadastoTeste') }}"
+        class="nav-link {% if request.path == url_for('quality_cadastoTeste') %}active{% endif %}"
+        aria-current="page">Cadastrar Novo Teste</a>
+</button>
+
+<div class="table-responsive">
+    <h2 class="text-center mb-5">Lista de Testes</h2>
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Código</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Objetivo</th>
+                <th scope="col">Ind. Funcional</th>
+                <th scope="col">Preparação</th>
+                <th scope="col">Dados Input</th>
+                <th scope="col">Dados Output</th>
+                <th scope="col">Desc. Procedimento</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for chave, teste in lista_testes.items()%}
+                <tr>
+                    <td>IC-MT{{loop.index}}</td>
+                    <td>{{teste.nome}}</td>
+                    <td>{{teste.objetivo}}</td>
+                    <td>{{teste.ind_funcional}}</td>
+                    <td>{{teste.preparacao}}</td>
+                    <td>{{teste.dados_input}}</td>
+                    <td>{{teste.dados_output}}</td>
+                    <td>{{teste.desc_procedimento}}</td>
+                    <td>
+                        <button type="button" class="btn btn-warning btn-sm"><i class="bi bi-pencil"></i></button>
+                        <button type="button" class="btn btn-danger btn-sm"><i class="bi bi-x-circle"></i></button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock %}

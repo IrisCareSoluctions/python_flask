@@ -1,0 +1,27 @@
+body {
+    background-color: #ccc;
+}
+
+div.card-body > h5.card-title {
+    text-transform: capitalize !important;
+}
+
+.cards {
+    margin-top: 50px;
+}
+
+.texto_home {
+    font-family: 'Lobster', sans-serif;
+    font-family: 'Playfair Display', serif;
+
+    margin: 20px 0;
+}
+
+.btn-novo-teste {
+    margin: 15px 0;
+}
+
+form.cadastro-teste {
+    max-width: 750px;
+    margin: 70px auto;
+}

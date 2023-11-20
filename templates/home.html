@@ -1,6 +1,32 @@
 {% extends "template.html" %}
 {% block conteudo %}
 
-    <h1>Home</h1>
+<div class="texto_home">
+    <h1 class="text-center">Olá, seja bem vindo professor!</h1>
+    <p class="fs-4">Obrigado por ter dado a oportunidade de acessar nossa aplicação para demonstrar nosso projeto e nossas entregas.</p>
+    <p class="fs-4">Convido vocês a saber mais sobre o nosso projeto na página <a href="{{ url_for('sobre') }}" class="" aria-current="page">Sobre</a>.</p>
+    <p class="fs-4">Abaixo há uma lista das matérias disponíveis em nosso plafarma, além de visualizar a sua, fique à vontade de dar uma olhada nas outras.</p>
+</div>
+
+<div class="cards d-flex justify-content-around">
+    <div class="card" style="width: 18rem;">
+        <img src="{{ url_for('static', filename='DataBase.png')}}" class="card-img-top" alt="...">
+        <div class="card-body d-flex flex-column justify-content-between">
+            <h5 class="card-title">Database Application & Data Science</h5>
+            <p class="card-text">Nosso objetivo nessa entrega foi realizar um banco de dados relacional na Oracle. Também utilizamos da linguagem PL/SQL da Oracle para realizar algumas funcionalidades.</p>
+            <a href="#" class="btn btn-primary">Acessar entrega</a>
+        </div>
+    </div>
+    
+    <div class="card" style="width: 18rem;">
+        <img src="{{ url_for('static', filename='Quality.jpg')}}" class="card-img-top" alt="...">
+        <div class="card-body d-flex flex-column justify-content-between">
+            <h5 class="card-title">Compliance & Quality Assurance</h5>
+            <p class="card-text">Colocar o texto de quality.</p>
+            <a href="{{ url_for('quality_home')}}" class="btn btn-primary">Acessar entrega</a>
+        </div>
+    </div>
+</div>
+
 
 {% endblock %}

@@ -1,0 +1,48 @@
+{% extends "template.html" %}
+{% block conteudo %}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a class="fw-bold" href="{{ url_for('index') }}">Página Inicial</a></li>
+        <li class="breadcrumb-item"><a class="fw-bold" href="{{ url_for('quality_home') }}">Compliance & Quality Assurance</a></li>
+        <li class="breadcrumb-item active fw-bold" aria-current="page">Log Testes</li>
+    </ol>
+</nav>
+
+<button type="button" class="btn btn-primary btn-novo-teste">
+    <a href="{{ url_for('quality_cadastroLogTestes') }}"
+        class="nav-link {% if request.path == url_for('quality_cadastroLogTestes') %}active{% endif %}"
+        aria-current="page">Cadastrar Novo Log Teste</a>
+</button>
+
+<div class="table-responsive">
+    <h2 class="text-center mb-5">Log de Testes</h2>
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome Teste</th>
+                <th scope="col">Responsável</th>
+                <th scope="col">Data Hora  da Execução</th>
+                <th scope="col">Resultado</th>
+                <th scope="col">Obs. Falha</th>
+                <th scope="col">Ação Realizada</th>                
+            </tr>
+        </thead>
+        <tbody>
+            {% for chave, log in lista_log.items() %}
+            <tr>
+                <th scope="row">{{loop.index}}</th>
+                <td>{{log.nome_teste}}</td>
+                <td>{{log.responsavel}}</td>
+                <td>{{log.dt_hora_exec}}</td>
+                <td>{{log.resultado}}</td>
+                <td>{{log.obs_falha}}</td>
+                <td>{{log.acao_realizada}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
