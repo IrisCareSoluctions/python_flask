@@ -244,7 +244,7 @@ def quality_listarTestes():
     cursor = connection.cursor()
 
     sql = "SELECT id_teste, nome, objetivo, ind_funcional, preparacao, dados_input, dados_output, desc_procedimento "
-    sql += 'FROM TB_IC_TESTE  ORDER BY nome'
+    sql += 'FROM TB_IC_TESTE  ORDER BY id_teste'
 
     cursor.execute(sql)
 
@@ -269,7 +269,7 @@ def quality_logTestes():
     cursor = connection.cursor()
 
     sql = "SELECT l.id_log, l.id_teste, l.responsavel, l.dt_hora_exec, l.resultado, l.obs_falha, t.nome, t.desc_procedimento "
-    sql += 'FROM TB_IC_TESTE_LOG l INNER JOIN TB_IC_TESTE t ON(l.ID_TESTE = t.ID_TESTE)'
+    sql += 'FROM TB_IC_TESTE_LOG l INNER JOIN TB_IC_TESTE t ON(l.ID_TESTE = t.ID_TESTE) ORDER BY dt_hora_exec'
 
     cursor.execute(sql)
 
@@ -316,18 +316,18 @@ def quality_cadastroLogTestes():
 def quality_cadastrarLogTeste():
     data = request.form
 
-    # Lista de chaves que deseja verificar e atribuir valor padrão se for None
-    keys_to_check = ['responsavel', 'resultado', 'obs_falha', 'nome_teste']
-
-    # Verifica cada chave no formulário
-    for key in keys_to_check:
-        # Se a chave não estiver presente no formulário ou se o valor for None, atribui ''
-        data[key] = data.get(key, '')
-
     responsavel = data['responsavel']
+    if responsavel is None:
+        responsavel = ''
     resultado = data['resultado']
+    if resultado is None:
+        resultado = ''
     obs_falha = data['obs_falha']
+    if obs_falha is None:
+        obs_falha = ''
     id_teste = data['nome_teste']
+    if id_teste is None:
+        id_teste = ''
 
     data_hora_atual = datetime.now()
 
