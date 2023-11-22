@@ -8,12 +8,11 @@
         <li class="breadcrumb-item active fw-bold" aria-current="page">Testes</li>
     </ol>
 </nav>
-
-<button type="button" class="btn btn-primary btn-novo-teste">
-    <a href="{{ url_for('quality_cadastoTeste') }}"
-        class="nav-link {% if request.path == url_for('quality_cadastoTeste') %}active{% endif %}"
-        aria-current="page">Cadastrar Novo Teste</a>
-</button>
+<a href="{{ url_for('quality_cadastoTeste') }}" class="nav-link {% if request.path == url_for('quality_cadastoTeste') %}active{% endif %}" aria-current="page">
+    <button type="button" class="btn btn-primary btn-novo-teste">
+        Cadastrar Novo Teste
+    </button>
+</a>
 
 <div class="table-responsive">
     <h2 class="text-center mb-5">Lista de Testes</h2>
@@ -43,8 +42,8 @@
                     <td>{{teste.dados_output}}</td>
                     <td>{{teste.desc_procedimento}}</td>
                     <td>
-                        <button type="button" class="btn btn-warning btn-sm"><i class="bi bi-pencil"></i></button>
-                        <button type="button" class="btn btn-danger btn-sm"><i class="bi bi-x-circle"></i></button>
+                        <a href="{{ url_for('quality_editarTeste', id=teste.id_teste) }}"><button type="button" class="btn btn-warning btn-sm"><i class="bi bi-pencil"></i></i></button></a>
+                        <a href="{{ url_for('quality_deletarTeste', id=teste.id_teste) }}"><button type="button" class="btn btn-danger btn-sm"><i class="bi bi-x-circle"></i></button></a> 
                     </td>
                 </tr>
             {% endfor %}

@@ -21,7 +21,7 @@
         <label for="floatingTextarea">Objetivo</label>
     </div>
     <select class="form-select mb-3" aria-label="Indicador Funcional / Não Funcional" id="ind_funcional" name="ind_funcional">
-        <option selected disabled>Indicador Funcional / Não Funcional</option>
+        <option selected disabled value="">Indicador Funcional / Não Funcional</option>
         <option value="F">Funcional</option>
         <option value="NF">Não Funcional</option>
     </select>
@@ -43,7 +43,7 @@
     </div>
     <div class="d-flex justify-content-around mt-5">
         <button type="submit" class="btn btn-primary">Cadastrar</button>
-        <button type="button" class="btn btn-danger">Cancelar</button>
+        <button type="button" class="btn btn-danger"><a href="{{ url_for('quality_listarTestes')}}">Cancelar</a></button>
         <button type="button" class="btn btn-secondary" onclick="limparFormulario()">Limpar Dados</button>
     </div>
 </form>

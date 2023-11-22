@@ -8,12 +8,12 @@
         <li class="breadcrumb-item active fw-bold" aria-current="page">Log Testes</li>
     </ol>
 </nav>
-
-<button type="button" class="btn btn-primary btn-novo-teste">
-    <a href="{{ url_for('quality_cadastroLogTestes') }}"
-        class="nav-link {% if request.path == url_for('quality_cadastroLogTestes') %}active{% endif %}"
-        aria-current="page">Cadastrar Novo Log Teste</a>
-</button>
+<a href="{{ url_for('quality_cadastroLogTestes') }}"
+    class="nav-link {% if request.path == url_for('quality_cadastroLogTestes') %}active{% endif %}" aria-current="page">
+    <button type="button" class="btn btn-primary btn-novo-teste">
+        Cadastrar Novo Log Teste
+    </button>
+</a>
 
 <div class="table-responsive">
     <h2 class="text-center mb-5">Log de Testes</h2>

@@ -1,0 +1,61 @@
+{% extends "template.html" %}
+{% block conteudo %}
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a class="fw-bold" href="{{ url_for('index') }}">Página Inicial</a></li>
+        <li class="breadcrumb-item"><a class="fw-bold" href="{{ url_for('quality_home') }}">Compliance & Quality Assurance</a></li>
+        <li class="breadcrumb-item"><a class="fw-bold" href="{{ url_for('quality_listarTestes') }}">Testes</a></li>
+        <li class="breadcrumb-item active fw-bold" aria-current="page">Editar Teste</li>
+    </ol>
+</nav>
+
+<form class="cadastro-teste" id="cadastro-teste" method="post" action="{{ url_for('quality_atualizarTeste') }}">
+    <h2 class="text-center mb-5">Editar Teste</h2>
+    <input type="hidden" name="id_teste" value="{{teste.id_teste}}">
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" value="{{ teste.nome }}">
+        <label for="nome">Nome</label>
+    </div>
+    <div class="form-floating mb-3">
+        <textarea class="form-control" placeholder="objetivo" id="objetivo" name="objetivo" style="height: 100px">{{ teste.objetivo }}</textarea>
+        <label for="floatingTextarea">Objetivo</label>
+    </div>
+    <select class="form-select mb-3" aria-label="Indicador Funcional / Não Funcional" id="ind_funcional" name="ind_funcional">
+        <option disabled value="">Indicador Funcional / Não Funcional</option>
+        {% if teste.ind_funcional == 'F'%}
+            <option selected value="F">Funcional</option>
+        {% else %}
+            <option value="F">Funcional</option>
+        {% endif %}
+        {% if teste.ind_funcional == 'NF'%}
+            <option selected value="NF">Não Funcional</option>
+        {% else %}
+            <option value="NF">Não Funcional</option>
+        {% endif %}
+    </select>
+    <div class="form-floating mb-3">
+        <textarea class="form-control" placeholder="preparacao" id="preparacao" name="preparacao" style="height: 100px">{{ teste.preparacao }}</textarea>
+        <label for="floatingTextarea">Preparação</label>
+    </div>
+    <div class="form-floating mb-3">
+        <textarea class="form-control" placeholder="dados_input" id="dados_input"  name="dados_input" style="height: 100px">{{ teste.dados_input }}</textarea>
+        <label for="floatingTextarea">Dados de Input</label>
+    </div>
+    <div class="form-floating mb-3">
+        <textarea class="form-control" placeholder="dados_output" id="dados_output"  name="dados_output" style="height: 100px">{{ teste.dados_output }}</textarea>
+        <label for="floatingTextarea">Dados de Output</label>
+    </div>
+    <div class="form-floating mb-3">
+        <textarea class="form-control" placeholder="desc_procedimento" id="desc_procedimento"   name="desc_procedimento" style="height: 100px">{{ teste.desc_procedimento }}</textarea>
+        <label for="floatingTextarea">Descrição do Procedimento</label>
+    </div>
+    <div class="d-flex justify-content-around mt-5">
+        <button type="submit" class="btn btn-primary">Atualizar</button>
+        <a href="{{ url_for('quality_listarTestes')}}"><button type="button" class="btn btn-danger">Cancelar</button></a>
+    </div>
+</form>
+
+
+{% endblock %}

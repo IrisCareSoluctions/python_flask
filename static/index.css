@@ -25,3 +25,8 @@ form.cadastro-teste {
     max-width: 750px;
     margin: 70px auto;
 }
+
+button a {
+    text-decoration: none;
+    color: white;
+}
