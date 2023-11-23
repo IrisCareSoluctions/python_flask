@@ -68,9 +68,8 @@ def quality_home():
     lista_testes = {}
 
     for i, row in enumerate(result):
-        if i <= 4:
-            teste = Teste(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7])
-            lista_testes[row[0]] = teste
+        teste = Teste(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7])
+        lista_testes[row[0]] = teste
 
 
     sql = "SELECT l.id_log, l.id_teste, l.responsavel, l.dt_hora_exec, l.resultado, l.obs_falha, t.nome, t.desc_procedimento "
@@ -83,9 +82,8 @@ def quality_home():
     lista_log = {}
 
     for i, row in enumerate(result):
-        if i <= 4:
-            log = LogTeste(row[6], row[2], row[3], row[4], row[5], row[7])
-            lista_log[row[0]] = log
+        log = LogTeste(row[6], row[2], row[3], row[4], row[5], row[7])
+        lista_log[row[0]] = log
 
 
     cursor.close()

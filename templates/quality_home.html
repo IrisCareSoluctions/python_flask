@@ -8,13 +8,99 @@
     </ol>
 </nav>
 
+<section id="integrantes">
+
+    <h3>Integrantes</h3>
+
+    <div class="d-flex justify-content-around flex-wrap">
+        
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{{ url_for('static', filename='vinicius.jpg')}}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Vinicius Oliveira | RM93613</h5>
+                        <p class="card-text">Responsável por projetar o banco de dados e realizar a documentação dos Testes manuais e automatizados.</p>
+                        <h5 class="card-text"><a href="https://www.linkedin.com/in/viniolr/"><i class="bi bi-linkedin"></i></a></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{{url_for('static', filename='user.png')}}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Marcos Bilobram | RM94311</h5>
+                        <p class="card-text">Responsável </p>
+                        <h5 class="card-text"><a href=""><i class="bi bi-linkedin"></i></a></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{{url_for('static', filename='user.png')}}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Nathália Maia | RM96320</h5>
+                        <p class="card-text">Responsável </p>
+                        <h5 class="card-text"><a href=""><i class="bi bi-linkedin"></i></a></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{{url_for('static', filename='user.png')}}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Rafaela da Silva | RM94972</h5>
+                        <p class="card-text">Responsável </p>
+                        <h5 class="card-text"><a href=""><i class="bi bi-linkedin"></i></a></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{{url_for('static', filename='user.png')}}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Jaelson | RM</h5>
+                        <p class="card-text">Responsável </p>
+                        <h5 class="card-text"><a href=""><i class="bi bi-linkedin"></i></a></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</section>
+
 <section id="azure" class="mb-5">
 
     <h3>Azure Devops - Azure Boards</h3>
     
     <p>Com base em nosso projeto, apresentado na página <a href="{{ url_for('sobre') }}" class="" aria-current="page">Sobre</a> desta aplicação desenvolvemos no um plano de BackLog do nosso produto, incluindo <b>Épicos</b>, <b>Features</b> e <b>Product backlog itens</b>. Todos com a <b>descrição</b> e <b>critérios de aceite</b>.</p>
     <p>Liberamos o acesso para o professor Renato Jardim Parducci (profrenato.parducci@fiap.com.br).</p>
-    <p>Link:  <a href="https://dev.azure.com/IrisCareSoluctions">Clique aqui</a></p>
+    <p>Link:  <a href="https://dev.azure.com/IrisCareSoluctions">https://dev.azure.com/IrisCareSoluctions</a></p>
     <p>A seguir alguns prints do nosso backlog atendendo ao requisitos solicitados.</p>
 
     <div class="card mb-3">
@@ -50,6 +136,8 @@
 
     <p>Em vez de utilizar a ferramenta Excel para manualmente registrar informações de teste, optamos por desenvolver uma aplicação dedicada. Essa abordagem oferece maior dinamicidade, permitindo o cadastro, listagem e edição eficientes dos testes do sistema. Essa solução proporciona uma experiência mais ágil e organizada, facilitando a gestão e análise dos testes realizados.</p>
 
+    <p>A seguir a visualização dos dados cadastrados na tabela de testes na aplicação.</p>
+
     <table class="table table-striped table-hover">
         <thead class="table-dark">
             <tr>
@@ -78,9 +166,9 @@
             {% endfor %}
         </tbody>
     </table>
-    <div class="text-center">
+    <!-- <div class="text-center">
         <span><i>Está sendo exibido apenas os 4 primeiros, acessar a página de <a href="{{url_for('quality_cadastrarTeste')}}">Testes</a> para visualiar todos.</i></span>
-    </div>
+    </div> -->
 
 </section>
 
@@ -116,15 +204,15 @@
             {% endfor %}
         </tbody>
     </table>
-    <div class="text-center">
+    <!-- <div class="text-center">
         <span><i>Está sendo exibido apenas os 4 primeiros, acessar a página de <a href="{{url_for('quality_logTestes')}}">Log de Testes</a> para visualiar todos.</i></span>
-    </div>
+    </div> -->
 
 </section>
 
 <section id="robos" class="mb-5">
 
-    <h3>Robôs</h3>
+    <h3>Automações</h3>
 
 </section>
 
@@ -137,15 +225,23 @@
     <div class="ps-5">
         <div class="my-2">
             <h5>Teste de uma aplicação nova, que acabou de ser codificada.</h5>
-            <p><b>Resposta: </b></p>
+            <p><b>Resposta: </b>Nesse cenário, é recomendável realizar testes manuais pois podem ajudar a explorar a aplicação de maneira mais abrangente, identificando possíveis problemas de usabilidade,
+            interface e comportamento. Até mesmo por que primeiro deve-se fazer o reconhecimento do processo do teste para após um robô ser treinado para está funcionalidade, assim sendo manual.</p>
         </div>
         <div class="my-2">
             <h5>Teste de uma aplicação que já funcionava, cujo testes já tinham sido aplicados e que precisa ser testada novamente.</h5>
-            <p><b>Resposta: </b></p>
+            <p><b>Resposta: </b>Nesse caso, a recomendação seria focar mais em testes automatizados. Testes manuais podem ser aplicados, mas se a
+            aplicação já foi testada extensivamente antes e não sofreu alterações significativas, os testes manuais podem ser menos
+            críticos. Testes automatizados podem ser rápidos e eficazes para garantir que as
+            funcionalidades existentes continuem funcionando conforme o esperado.</p>
         </div>
         <div class="my-2">
             <h5>Teste de uma aplicação que já funcionava, que não foi alterada mas, chama/consome serviço de uma outra aplicação que foi modificada, exigindo que seja feito um teste de regressão.</h5>
-            <p><b>Resposta: </b></p>
+            <p><b>Resposta: </b>Nesse cenário, é aconselhável realizar testes automatizados, especialmente testes de regressão. A automação pode ajudar
+            a garantir que as alterações na aplicação externa não impactem negativamente na aplicação existente. Testes manuais
+            podem ser usados para explorar casos de uso específicos ou situações complexas, mas a automação é crucial para garantir
+            uma cobertura abrangente e eficiente, especialmente quando há dependências externas que precisam ser verificadas de
+            forma consistente.</p>
         </div>
     </div>
 
