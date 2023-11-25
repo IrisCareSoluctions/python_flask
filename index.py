@@ -351,4 +351,8 @@ def quality_cadastrarLogTeste():
 
     return redirect(url_for('quality_logTestes'))
 
+@app.route("/banco", methods=['GET'])
+def banco_home():
+
+    return render_template('banco_home.html')
 app.run(debug=True)

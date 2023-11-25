@@ -1,0 +1,242 @@
+{% extends "template.html" %}
+{% block conteudo %}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a class="fw-bold" href="{{ url_for('index') }}">Página Inicial</a></li>
+        <li class="breadcrumb-item active fw-bold" aria-current="page">Database Application Development</li>
+    </ol>
+</nav>
+
+<div class="text-center">
+
+    <h1>Ires Care</h1>
+
+</div>
+
+<section id="integrantes" class="mb-5">
+
+    <h3>Integrantes</h3>
+
+    <div class="d-flex justify-content-around flex-wrap">
+
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{{ url_for('static', filename='vinicius.jpg')}}" class="img-fluid rounded-start"
+                        alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Vinicius Oliveira | RM93613</h5>
+                        <p class="card-text">Responsável por projetar o banco de dados e realizar a documentação dos
+                            Testes manuais e automatizados.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{{url_for('static', filename='marcos.jpg')}}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Marcos Bilobram | RM94311</h5>
+                        <p class="card-text">Responsável pelo fluxo de dados e implementação da API.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{{url_for('static', filename='Nathalia.jpg')}}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Nathália Maia | RM96320</h5>
+                        <p class="card-text">Responsável por desenvolver o Front-End (Mobile).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{{url_for('static', filename='rafaela.jpg')}}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Rafaela da Silva | RM94972</h5>
+                        <p class="card-text">Responsável pela implementação do MCV completo em ASP.NET e desenvolvimento
+                            de IOT.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{{url_for('static', filename='jaelson.jpg')}}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Jaelson dos Santos | RM93915</h5>
+                        <p class="card-text">Responsável pela parte de security e manuseamento das aplicações em cloud,
+                            e pelo desenvolvimento da IA de reconhecimento de iris.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="resumo" class="mb-5">
+
+    <h3>Resumo do projeto</h3>
+
+    <p>O projeto IrisCare Solutions tem como principal objetivo a prevenção do Retinoblastoma por meio da análise de
+        imagem,
+        visando a detecção precoce desse tipo de câncer ocular em crianças pequenas. O projeto propõe o desenvolvimento
+        de um
+        aplicativo móvel acessível e fácil de usar, permitindo aos pais e cuidadores capturar imagens dos olhos das
+        crianças
+        para identificar possíveis sintomas da doença.</p>
+
+    <p>A iniciativa busca resolver problemas como a falta de conscientização e detecção precoce do Retinoblastoma, além
+        do
+        acesso limitado a instalações médicas especializadas para diagnóstico e tratamento. O aplicativo não apenas
+        permite a
+        captura de imagens, mas também oferece um registro abrangente dos resultados de análises e exames recomendados,
+        facilitando a comunicação com profissionais de saúde e possibilitando uma transferência mais rápida para centros
+        de
+        tratamento especializados.</p>
+
+</section>
+
+<section id="modelagem" class="mb-5">
+
+    <h3>Modelagem Lógica</h3>
+
+    <div class="mb-5">
+        <img style="width: 100%;" src="{{ url_for('static', filename='Logical.png')}}" alt="">
+    
+    </div>
+
+    <h3>Modelagem Física</h3>
+
+    <div>
+        <img style="width: 100%;" src="{{ url_for('static', filename='Relational_1.png')}}" alt="">
+
+    </div>
+
+
+</section>
+
+<section id="ddl" class="mb-5">
+
+    <h3>Prints das evidências da criação dos objetos no Banco</h3>
+
+    <div class="d-flex">
+
+        <div>
+            <img style="width: 98%;" class="mb-2" src="{{ url_for('static', filename='ddl_1.png')}}" alt="">
+        
+        </div>
+    
+        <div>
+            <img style="width: 98%;" src="{{ url_for('static', filename='ddl_2.png')}}" alt="">
+        
+        </div>
+    
+        <div>
+            <img style="width: 98%;" src="{{ url_for('static', filename='ddl_3.png')}}" alt="">
+        
+        </div>
+    </div>
+
+
+</section>
+
+<section id="carga" class="mb-5">
+
+    <h3>Print da evidência da carga de dados</h3>
+
+    <div class="mb-5">
+        <img style="width: 98%;" class="mb-2" src="{{ url_for('static', filename='carga_dados.png')}}" alt="">
+    
+    </div>
+
+    <h3>Prints das tabelas populadas</h3>
+
+    <div class="mb-5">
+        <img style="width: 98%;" class="mb-2" src="{{ url_for('static', filename='tb_ic_address.png')}}" alt="">
+    
+    </div>
+
+    <div class="mb-5">
+        <img style="width: 98%;" class="mb-2" src="{{ url_for('static', filename='tb_ic_analysis.png')}}" alt="">
+    
+    </div>
+
+    <div class="mb-5">
+        <img style="width: 98%;" class="mb-2" src="{{ url_for('static', filename='tb_ic_child.png')}}" alt="">
+    
+    </div>
+
+    <div class="mb-5">
+        <img style="width: 98%;" class="mb-2" src="{{ url_for('static', filename='tb_ic_erros.png')}}" alt="">
+    
+    </div>
+
+    <div class="mb-5">
+        <img style="width: 98%;" class="mb-2" src="{{ url_for('static', filename='tb_ic_exam.png')}}" alt="">
+    
+    </div>
+
+    <div class="mb-5">
+        <img style="width: 98%;" class="mb-2" src="{{ url_for('static', filename='tb_ic_phone.png')}}" alt="">
+    
+    </div>
+
+    <div class="mb-5">
+        <img style="width: 98%;" class="mb-2" src="{{ url_for('static', filename='tb_ic_user.png')}}" alt="">
+    
+    </div>
+
+</section>
+
+<section id="relatorios">
+
+    <h3>Prints das evidências da execução das duas pesquisas (Relatórios)</h3>
+
+    <div class="mb-5">
+        <img style="width: 98%;" class="mb-2" src="{{ url_for('static', filename='relatorio_1.png')}}" alt="">
+    
+    </div>
+    
+    <div class="mb-5">
+        <img style="width: 98%;" class="mb-2" src="{{ url_for('static', filename='relatorio_2.png')}}" alt="">
+    
+    </div>
+
+</section>
+
+<section id="function">
+
+    <h3>Prints de evidência da execução da função</h3>
+
+    <div class="mb-5">
+        <img style="width: 98%;" class="mb-2" src="{{ url_for('static', filename='function.png')}}" alt="">
+    
+    </div>
+
+</section>
+
+{% endblock %}
