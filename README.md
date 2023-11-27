@@ -9,13 +9,18 @@
 ----
 # <span style="color: #63C71F;">Pitch</span>
 
-[Assista ao video Pitch](https://youtu.be/0_QOPCaIbMc)
+[Assista ao video Pitch](https://youtu.be/Xke6Jv6ONQ0)
 
 ----
 
 # <span style="color: #63C71F;">Demonstração WebApp da Azure </span>
 
-[Assista ao video do back-end integrado rodando](https://www.youtube.com/watch?v=kX0do_P3T9E)
+[Assista ao video do back-end integrado rodando](https://youtu.be/YqC0E4ZScxM)
+
+<br/>
+
+  link deploy: https://api-iriscare.azurewebsites.net/swagger-ui/index.html
+
 
 ---
 
